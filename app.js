@@ -1,0 +1,14 @@
+const express = require("express");
+const app = express();
+const bodyParser = require("body-parser");
+var multer = require('multer');
+var upload = multer();
+app.use(bodyParser.urlencoded({ extended: true}));
+app.use(bodyParser.json());
+app.use(upload.array()); 
+app.set('view engine', 'ejs'); 
+var path = require('path');
+app.use(express.static(__dirname + '/public'));
+const router1 = require('./routes/Server.js');
+app.use(router1);
+app.listen(1000);
